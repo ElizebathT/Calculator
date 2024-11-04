@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <title>Calculator</title>
+</head>
+<style>
+    button{
+        background-color: azure;
+        border-radius: 8px;
+        border: 1px solid rgb(157, 192, 192);
+        color: cadetblue;
+    }
+    div{
+        background-color: cadetblue;
+        border-radius: 3px;
+    }
+    input{
+        border-radius: 5px;
+        border: 1px solid rgb(157, 192, 192);
+        color: cadetblue;
+    }
+</style>
+<body>
+    <h3 class="container p-5">CALCULATOR</h3>
+    <div class="container border p-5 w-50" style="margin-top: 5%;">
+        <input class="container-fluid" type="text" id="output">
+        <div class="container row m-0 p-1 justify-content-between">
+            <button id="sev" onclick="num(id)" class="col-3">7</button>
+            <button id="eig" onclick="num(id)" class="col-3">8</button>
+            <button id="nin" onclick="num(id)" class="col-3">9</button>
+            <button id="clr" onclick="clr()" class="col-3">C</button>     
+            <button id="fou" onclick="num(id)" class="col-3 ">4</button>
+            <button id="fiv" onclick="num(id)" class="col-3">5</button>
+            <button id="six" onclick="num(id)" class="col-3">6</button>
+            <button id="mul" onclick="opr(id)" class="col-3">*</button>   
+            <button id="one" onclick="num(id)" class="col-3">1</button>
+            <button id="two" onclick="num(id)" class="col-3">2</button>
+            <button id="thr" onclick="num(id)" class="col-3">3</button>
+            <button id="div" onclick="opr(id)" class="col-3">/</button>     
+            <button id="zer" onclick="num(id)" class="col-3 ">0</button>
+            <button id="add" onclick="opr(id)" class="col-3">+</button>
+            <button id="sub" onclick="opr(id)" class="col-3">-</button>
+            <button id="eql" onclick="ans()" class="col-3">=</button>          
+        </div>
+    </div>
+    <script>
+        let i,n,j,oper,result
+        function clr() {
+            document.getElementById('output').value=''
+        }
+        function num(id) {
+            switch (id) {
+                case 'one':
+                    n=1
+                    break;
+                case 'two':
+                    n=2
+                    break;
+                case 'thr':
+                    n=3
+                    break;
+                case 'fou':
+                    n=4
+                    break;
+                case 'fiv':
+                    n=5
+                    break;
+                case 'six':
+                    n=6
+                    break;
+                case 'sev':
+                    n=7
+                    break;
+                case 'eig':
+                    n=8
+                    break;
+                case 'nin':
+                    n=7
+                    break;  
+                case 'zer':
+                    n=0
+                    break;          
+                default:
+                    break;
+            }
+            i=document.getElementById('output').value+n
+            document.getElementById('output').value=i
+        }
+        function opr(id) {
+            j=i
+            oper=id
+            document.getElementById('output').value=''
+        }
+        function ans() {
+            switch (oper) {
+                case 'add':
+                    result=Number(j)+Number(i)                    
+                    break;
+                case 'sub':
+                    result=Number(j)-Number(i)                    
+                    break;
+                case 'mul':
+                    result=Number(j)*Number(i)                    
+                    break;
+                case 'div':
+                    result=Number(j)/Number(i)                    
+                    break;
+                default:
+                    break;
+            }
+            document.getElementById('output').value=result
+            i=result
+        }
+    </script>
+</body>
+</html>
