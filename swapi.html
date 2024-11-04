@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWAPI</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+
+</head>
+<style>
+    nav{
+        background-image: linear-gradient(rgb(109, 108, 108), rgb(65, 65, 65));
+        color: #ffffff;
+        font-size: medium;
+        border: 1px solid black;
+    }
+    body{
+        background-color: rgb(65, 65, 65);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    .intro{
+        background-color: #1c1e22;
+    }
+    .result{
+        border: 1px solid black;
+    }
+    .str{
+        background-image: linear-gradient(rgb(109, 108, 108), rgb(65, 65, 65));
+        align-items: center;
+    }
+    #output{
+        border: 15px solid  #1c1e22;
+        font-size: small;
+        min-width: 100%;
+        min-height: 500px;
+    }
+    .content{
+        font-size: medium;
+        text-align: left;
+    }
+</style>
+<body>
+    <nav class="container-fluid d-flex justify-content-end">
+        <p class="p-2">Home</p>
+        <p class="p-2">About</p>
+        <p class="p-2">Documentation</p>
+    </nav>
+    <div class="container-fluid my-5 p-5 intro text-center">
+        <h1 class="text-warning p-2">SWAPI</h1>
+        <h5 class="text-warning">The Star Wars API</h5>
+        <h5 class="text-light p-2">(what happened to swapi.co?)</h5>
+    </div>
+    <div class="container-fluid my-5 p-3  text-center text-light">
+        <p>All the Star Wars data you've ever wanted:</p>
+        <p><b>Planets, Spaceships, Vehicles, People, Films and Species</b></p>
+        <p>From all SEVEN Star Wars films</p>
+        <p>Now with The Force Awakens data!</p>    
+    </div>
+    <div class="container-fluid result my-5 p-3  text-center text-light">
+        <div class="container w-50">
+            <h1 >
+                Try it now!
+            </h1>
+                <div class="container-fluid h-20 d-flex justify-content-center">
+                    <p class="str px-3 pt-2 ">https://swapi.dev/api/</p>
+                    <input type="text" placeholder="people/1/" id="input" class="w-100">
+                    <button class="btn btn-secondary " onclick="fetchAPI()">request</button><br>
+                </div>
+                <p class="text-left">Need a hint? try people/1/ or planets/3/ or starships/9/</p>
+                <br>
+                <br>
+                <h3 class="text-left">Result:</h3>
+                <div class="coontainer-fluid">
+                    <textarea name="output" id="output">
+                </textarea>
+                </div>
+                <div class="row content">
+                    <div class="col-4">
+                      <h5>What is this?</h5>
+                      <p>The Star Wars API, or "swapi" (Swah-pee) is the world's first quantified and programmatically-accessible data source for all the data from the Star Wars canon universe!</p>
+                      <p>We've taken all the rich contextual stuff from the universe and formatted into something easier to consume with software. Then we went and stuck an API on the front so you can access it all!</p>
+                    </div>
+                    <div class="col-4">
+                      <h5 >How can I use it?</h5>
+                      <p>All the data is accessible through our HTTP web API. Consult our <a href="/documentation">documentation</a> if you'd like to get started.</p>
+                      <p>Helper libraries for popular programming languages are also provided so you can consume swapi in your favourite programming language, in a style that suits you.</p>
+                    </div>
+                    <div class="col-4">
+                      <h5 class="text-center">What happened with old swapi.co?</h5>
+                      <p>swapi.co is not supported and maintained anymore. But since so many projects and tutorials used it as their educational
+                      playground, this is an "unofficial" branch.</p>
+                    <p>This project is open source and you can contribute <a href="https://github.com/Juriy/swapi">on GitHub</a>.</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let text,res,link,id,str
+        const fetchAPI = async ()=>{
+            id=document.getElementById('input').value
+            link='https://swapi.dev/api/'+id
+            const response = await axios(link)
+            res=response.data
+            const myJSON = JSON.stringify(res, null,'\t');
+            // text='{ \n \t \"name\": "'+res.name+'", \n \t \"height\": "'+res.height+'", \n \t \"mass\": "'+res.mass+'", \n\t \"hair_color\": "'+res.hair_color+'",\n\t\"skin_color\": "'+res.skin_color+'",\n\t\"eye_color": "'+res.eye_color+'",\n\t\"birth_year\": "'+res.birth_year+'",\n\t\"gender": "'+res.gender+'",\n\t\"homeworld": "'+res.homeworld+'",\n\t\"films": [\n'
+            // if(res.films.length>0){
+            //     res.films.map((element)=>{
+            //         text=text+'\n\t\t\"'+element+'",'
+            //     })
+            //     text=text+'\n\t'
+            // }
+            // text=text+'],\n\t"species": ['
+            // if(res.species.length>0){
+            //     res.species.map((element)=>{
+            //         text=text+'\n\t\t\"'+element+'",'
+            //     })
+            //     text=text+'\n\t'
+            // }
+            // text=text+'],\n\t"vehicles": ['
+            // if(res.vehicles.length>0){
+            //     res.vehicles.map((element)=>{
+            //         text=text+'\n\t\t\"'+element+'",'
+            //     })
+            //     text=text+'\n\t'
+            // }
+            // text=text+'],\n\t"starships": ['
+            // if(res.starships.length>0){
+            //     res.starships.map((element)=>{
+            //         text=text+'\n\t\t\"'+element+'",'
+            //     })
+            //     text=text+'\n\t'
+            // }
+            // text=text+'],\n\t"created": "'+res.created+'"\n\t"edited": '+res.edited+'",\n\t"url": "'+res.url+'"\n}'
+            // console.log(response.data);
+            document.getElementById('output').innerHTML=myJSON
+            
+        }
+    </script>
+</body>
+</html>
