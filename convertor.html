@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Currency Convertor</h3>
+        <div class="container">
+            <input type="text" placeholder="From" id="from">
+            <input type="text" placeholder="To" id="to">
+            
+            <input type="text" placeholder="Amount" id="amt">
+            <button onclick="convert()">Submit</button>
+
+            <input type="text" id="result">
+        </div>
+    <script>
+        let a,b,c,link
+    var myHeaders = new Headers();
+    myHeaders.append("apikey", "kQ3u84hTWXFBpvWnjTxept1Ca6iFuwN8");
+
+    var requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+    headers: myHeaders
+    };
+    function convert() {
+        a=document.getElementById('to').value
+        b=document.getElementById('from').value
+        c=document.getElementById('amt').value
+        link='https://api.apilayer.com/exchangerates_data/convert?to='+a+'&from='+b+'&amount='+c
+        fetch(link, requestOptions)
+        .then(response => response.json())
+        .then(res => {
+            console.log(res)
+            document.getElementById('result').value=res.result
+    })
+        .catch(error => console.log('error', error));
+        
+    }
+    
+    </script>
+</body>
+</html>
